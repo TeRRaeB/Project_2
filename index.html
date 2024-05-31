@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender App</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        
+    </header>
+    <div class="container">
+        <div class="blender">
+            <div class="sections">
+                <div class="section" id="section1"></div>
+                <div class="section" id="section2"></div>
+                <div class="section" id="section3"></div>
+                <div class="section" id="section4"></div>
+                <div class="section" id="section5"></div>
+            </div>
+            <div class="controls">
+                <button id="mix">Mix</button>
+                <button id="clear">Clear</button>
+            </div>
+            <div class="flavor-scales">
+                <div>Sweetness: <div class="scale" id="sweetness-scale"></div></div>
+                <div>Acidity: <div class="scale" id="acidity-scale"></div></div>
+                <div>Bitterness: <div class="scale" id="bitterness-scale"></div></div>
+            </div>
+        </div>
+        <div class="ingredients">
+            <div class="ingredient" data-id="1" data-color="rgb(255, 0, 0)" data-sweetness="7" data-acidity="3" data-bitterness="2">Strawberry</div>
+            <div class="ingredient" data-id="2" data-color="rgb(0, 255, 0)" data-sweetness="2" data-acidity="5" data-bitterness="3">Apple</div>
+            <div class="ingredient" data-id="3" data-color="rgb(0, 0, 255)" data-sweetness="4" data-acidity="1" data-bitterness="5">Blueberry</div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
