@@ -1,21 +1,138 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+    font-family: sans-serif;
 }
 
 .container {
     display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    min-height: 70vh;
+}
+
+.tips {
+    flex: 1 1 auto;
+    padding: 2%;
+    width: 25%;
+    background-color: rgb(246, 228, 204);
 }
 
 .blender {
+    width: 40%;
+    background-color: rgb(246, 228, 204);
+    padding-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.controls button {
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+#mix {
+    background-color: green;
+}
+
+#clear {
+    background-color: red;
+}
+
+.flavor-scales {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.scale {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: #e2e2e2;
+}
+
+.fill {
+    height: 100%;
+    background-color: rgb(255, 0, 0);
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.ingredients {
+    padding-left: 10%;
+}
+
+.ingredient {
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2%;
+    flex-grow: 1;
+}
+
+.ingredients-section {
+    flex: 0 1 auto;
+    padding: 2%;
+    width: 35%;
+    background-color: rgb(246, 228, 204);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer {
+    flex: 1 1 auto;
+    height: 30vh; 
+    margin-top: auto;
+    background-image: url('../../assets/img/footer_pattern.jpeg');  
+    background-size: 30vh;
+    background-color: #000; 
+}
+.footer-h1 {
+    font-size: 3rem;
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 2px black;
+    margin-top: 5%;
+    font-family: sans-serif;
+    text-align: center;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+#logo {
+    max-width: 70%;
+}
+
+.tips-text {
+    padding: 5%;
+    border-radius: 15px;
+    border: 2px solid black;
+    background-color: white;
+}
+
+#recipes{
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+#recipes li {
+    text-align: left;
 }
 
 .sections {
@@ -24,6 +141,7 @@ body {
     border: 2px solid #000;
     display: flex;
     flex-direction: column-reverse;
+    background-color: white;
 }
 
 .section {
@@ -35,35 +153,132 @@ body {
     align-items: center;
 }
 
-.controls {
-    margin-top: 10px;
+.sections .name {
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.flavor-scales {
-    margin-top: 20px;
+.remove-btn {
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px; 
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+#popup-title {
+    font-size: 60px;
+    font-weight: 700;
+}
+#popup-descript{
+    font-size: 20px;
     text-align: center;
+    padding: 2%;
 }
-
-.scale {
-    display: flex;
-    width: 100px;
-    height: 20px;
-    border: 1px solid #000;
+#popup-text {
+    font-size: 25px;
 }
-
-.scale div {
-    flex: 1;
-    background-color: #ccc;
-}
-
-.ingredients {
+.popup-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.ingredient {
-    padding: 10px;
-    border: 1px solid #000;
-    margin-bottom: 5px;
-    cursor: pointer;
+.popup-content button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    font-size: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+#welcome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    z-index: 1; 
+} 
+#welcome h2{
+    font-size: 2rem;
+}
+
+#welcome p{
+    font-size: 1.5rem;
+    text-align: center;
+    align-items: center; 
+    padding-left: 20%;
+    padding-right: 20%;
+}
+#close-welcome { 
+    font-size: 2rem;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 2rem;
+}
+@media only screen and (max-width: 766px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .tips {
+        flex: 1 1 100%;
+    }
+
+    .blender {
+        flex-basis: 50%;
+        flex: 0 1 50%;
+        margin: 0;
+        padding-top: 20px;
+    }
+
+    .ingredients-section {
+        flex-basis: 50%;
+        margin: 0;
+        padding: 0;
+        padding-top: 20px;
+        flex: 0 1 50%;
+    }
+
+    .ingredients { 
+        padding-left: 5%;
+    }
+
+    .ingredient {
+        font-size: 15px;
+    }
+
+    .sections {
+        width: 150px;
+        height: 300px;
+    }
+    
+#welcome {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;  
+    align-items: center;  
+    z-index: 1; 
+} 
 }

@@ -1,42 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
     const blenderSections = document.querySelectorAll('.section');
-    const ingredients = document.querySelectorAll('.ingredient');
     const mixButton = document.getElementById('mix');
     const clearButton = document.getElementById('clear');
-    const sweetnessScale = document.getElementById('sweetness-scale');
-    const acidityScale = document.getElementById('acidity-scale');
-    const bitternessScale = document.getElementById('bitterness-scale');
+    const ingredientsList = document.getElementById('ingredients-list');
+    const sweetnessFill = document.getElementById('sweetness-fill');
+    const tartnessFill = document.getElementById('tartness-fill');
+    const bitternessFill = document.getElementById('bitterness-fill');
+    const popup = document.getElementById('popup');
+    const popupText = document.getElementById('popup-text');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescript = document.getElementById('popup-descript');
+    const closePopupButton = document.getElementById('close-popup');
 
-    ingredients.forEach(ingredient => {
-        ingredient.addEventListener('click', () => {
-            addIngredient(ingredient);
-        });
+    ingredients.sort((a, b) => a.name.localeCompare(b.name));
+    
+    const recipesText = document.getElementById('recipes');
+    recipesText.innerText = '';
+    displayIngredients(ingredients);
+    displayRecipes();
+
+    document.getElementById('close-welcome').addEventListener('click', () => {
+        document.getElementById('welcome').style.display = 'none';
     });
 
-    mixButton.addEventListener('click', () => {
-        mixIngredients();
-    });
+    function showPopup(message, descript, mixedColor) {
+        popupText.innerText = `Congratulations, you have made a ${message}!`;
+        popupTitle.innerText = message;
+        popupDescript.innerText = descript;
+        popup.classList.remove('hidden');
+        popup.style.background = mixedColor;
+    }
 
-    clearButton.addEventListener('click', () => {
+    closePopupButton.addEventListener('click', () => {
+        popup.classList.add('hidden');
         clearBlender();
     });
 
+
+    mixButton.addEventListener('click', mixIngredients);
+    clearButton.addEventListener('click', clearBlender);
+
+    function displayRecipes() {
+
+        recipes.forEach(recipe => {
+            const recipeDiv = document.createElement('div');
+            const recipeName = document.createElement('h3');
+            const recipeIngridientList = document.createElement('ul');
+
+            recipeName.innerText = recipe.name;
+
+            recipe.ingredients.forEach(ingredientId => {
+                const ingredient = ingredients.find(ing => ing.id === ingredientId);
+                const ingredientItem = document.createElement('li');
+                ingredientItem.innerText = ingredient ? ingredient.name : 'Unknown ingredient';
+                recipeIngridientList.appendChild(ingredientItem);
+            });
+
+            recipeDiv.appendChild(recipeName);
+            recipeDiv.appendChild(recipeIngridientList);
+            recipesText.appendChild(recipeDiv);
+        });
+    }
+
+
+    function displayIngredients(ingredients) {
+        ingredientsList.innerHTML = '';
+        ingredients.forEach(ingredient => {
+            const ingredientButton = document.createElement('button');
+            ingredientButton.className = 'ingredient';
+            ingredientButton.dataset.id = ingredient.id;
+            ingredientButton.dataset.color = ingredient.color;
+            ingredientButton.dataset.sweetness = ingredient.sweetness;
+            ingredientButton.dataset.tartness = ingredient.tartness;
+            ingredientButton.dataset.bitterness = ingredient.bitterness;
+            ingredientButton.innerText = ingredient.name;
+            ingredientButton.style.backgroundColor = ingredient.color;
+            ingredientButton.addEventListener('click', () => addIngredient(ingredientButton));
+            ingredientsList.appendChild(ingredientButton);
+        });
+    }
+
     function addIngredient(ingredient) {
-        const emptySection = Array.from(blenderSections).find(section => !section.dataset.id);
+        const emptySection = [...blenderSections].find(section => !section.dataset.id);
         if (emptySection) {
             emptySection.dataset.id = ingredient.dataset.id;
             emptySection.dataset.sweetness = ingredient.dataset.sweetness;
-            emptySection.dataset.acidity = ingredient.dataset.acidity;
+            emptySection.dataset.tartness = ingredient.dataset.tartness;
             emptySection.dataset.bitterness = ingredient.dataset.bitterness;
             emptySection.style.backgroundColor = ingredient.dataset.color;
             emptySection.innerHTML = `
-                <div>${ingredient.innerText}</div>
+                <div class="name">${ingredient.innerText}</div>
                 <button class="remove-btn">Delete</button>
             `;
-            updateFlavors(); 
-            emptySection.querySelector('.remove-btn').addEventListener('click', () => {
-                removeIngredient(emptySection);
-            });
+            updateFlavors();
+
+            emptySection.querySelector('.remove-btn').addEventListener('click', () => removeIngredient(emptySection));
         }
     }
 
@@ -45,24 +103,37 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.backgroundColor = '';
         delete section.dataset.id;
         delete section.dataset.sweetness;
-        delete section.dataset.acidity;
+        delete section.dataset.tartness;
         delete section.dataset.bitterness;
         updateFlavors();
     }
 
     function mixIngredients() {
-        const colors = Array.from(blenderSections)
+        const currentIngredients = Array.from(blenderSections)
+            .filter(section => section.dataset.id)
+            .map(section => parseInt(section.dataset.id, 10));
+
+        const matchedRecipe = recipes.find(recipe =>
+            recipe.ingredients.length === currentIngredients.length &&
+            recipe.ingredients.every(id => currentIngredients.includes(id))
+        );
+
+
+        const colors = [...blenderSections]
             .filter(section => section.dataset.id)
             .map(section => section.style.backgroundColor);
-        
-        if (colors.length > 0) {
+        let colorPeripe = '';
+        if (colors.length) {
             const mixedColor = colorMix(colors);
             blenderSections.forEach(section => {
-                if (section.dataset.id) {
-                    section.style.backgroundColor = mixedColor;
-                }
+                if (section.dataset.id) section.style.backgroundColor = mixedColor;
+                colorPeripe = mixedColor;
             });
         }
+        if (matchedRecipe) {
+            showPopup(matchedRecipe.name, matchedRecipe.descript, colorPeripe);
+        }
+
     }
 
     function clearBlender() {
@@ -71,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             section.style.backgroundColor = '';
             delete section.dataset.id;
             delete section.dataset.sweetness;
-            delete section.dataset.acidity;
+            delete section.dataset.tartness;
             delete section.dataset.bitterness;
         });
         updateFlavors();
@@ -79,40 +150,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateFlavors() {
         let sweetness = 0;
-        let acidity = 0;
+        let tartness = 0;
         let bitterness = 0;
 
         blenderSections.forEach(section => {
             if (section.dataset.id) {
                 sweetness += parseInt(section.dataset.sweetness, 10);
-                acidity += parseInt(section.dataset.acidity, 10);
+                tartness += parseInt(section.dataset.tartness, 10);
                 bitterness += parseInt(section.dataset.bitterness, 10);
             }
         });
 
-        updateScale(sweetnessScale, sweetness);
-        updateScale(acidityScale, acidity);
-        updateScale(bitternessScale, bitterness);
+        updateScale(sweetnessFill, sweetness);
+        updateScale(tartnessFill, tartness);
+        updateScale(bitternessFill, bitterness);
     }
 
-    function updateScale(scale, value) {
-        scale.innerHTML = '';
-        for (let i = 0; i < 10; i++) {
-            const cell = document.createElement('div');
-            if (i < value) {
-                cell.style.backgroundColor = '#f00';  
-            }
-            scale.appendChild(cell);
-        }
+    function updateScale(fillElement, value) {
+        const percentage = Math.min(value / 30 * 100, 100);
+        fillElement.style.width = `${percentage}%`;
     }
 
     function colorMix(colors) {
         let r = 0, g = 0, b = 0;
         colors.forEach(color => {
-            const rgb = color.match(/\d+/g).map(Number);
-            r += rgb[0];
-            g += rgb[1];
-            b += rgb[2];
+            const [red, green, blue] = color.match(/\d+/g).map(Number);
+            r += red;
+            g += green;
+            b += blue;
         });
 
         r = Math.round(r / colors.length);
