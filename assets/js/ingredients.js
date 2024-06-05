@@ -190,7 +190,7 @@ const ingredients = [
         "sweetness": 9,
         "tartness": 1,
         "bitterness": 0
-    }, 
+    },
     {
         "id": 27,
         "name": "Coconut Milk",

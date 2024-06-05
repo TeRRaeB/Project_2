@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closePopupButton = document.getElementById('close-popup');
 
     ingredients.sort((a, b) => a.name.localeCompare(b.name));
-    
+
     const recipesText = document.getElementById('recipes');
     recipesText.innerText = '';
     displayIngredients(ingredients);
