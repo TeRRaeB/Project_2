@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearButton = document.getElementById('clear');
     const ingredientsList = document.getElementById('ingredients-list');
     const sweetnessFill = document.getElementById('sweetness-fill');
-    const tartnessFill = document.getElementById('tartness-fill');
+    const sournessFill = document.getElementById('sourness-fill');
     const bitternessFill = document.getElementById('bitterness-fill');
     const popup = document.getElementById('popup');
     const popupText = document.getElementById('popup-text');
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredientButton.dataset.id = ingredient.id;
             ingredientButton.dataset.color = ingredient.color;
             ingredientButton.dataset.sweetness = ingredient.sweetness;
-            ingredientButton.dataset.tartness = ingredient.tartness;
+            ingredientButton.dataset.sourness = ingredient.sourness;
             ingredientButton.dataset.bitterness = ingredient.bitterness;
             ingredientButton.innerText = ingredient.name;
             ingredientButton.style.backgroundColor = ingredient.color;
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emptySection) {
             emptySection.dataset.id = ingredient.dataset.id;
             emptySection.dataset.sweetness = ingredient.dataset.sweetness;
-            emptySection.dataset.tartness = ingredient.dataset.tartness;
+            emptySection.dataset.sourness = ingredient.dataset.sourness;
             emptySection.dataset.bitterness = ingredient.dataset.bitterness;
             emptySection.style.backgroundColor = ingredient.dataset.color;
             emptySection.innerHTML = `
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.backgroundColor = '';
         delete section.dataset.id;
         delete section.dataset.sweetness;
-        delete section.dataset.tartness;
+        delete section.dataset.sourness;
         delete section.dataset.bitterness;
         updateFlavors();
     }
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             section.style.backgroundColor = '';
             delete section.dataset.id;
             delete section.dataset.sweetness;
-            delete section.dataset.tartness;
+            delete section.dataset.sourness;
             delete section.dataset.bitterness;
         });
         updateFlavors();
@@ -150,19 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateFlavors() {
         let sweetness = 0;
-        let tartness = 0;
+        let sourness = 0;
         let bitterness = 0;
 
         blenderSections.forEach(section => {
             if (section.dataset.id) {
                 sweetness += parseInt(section.dataset.sweetness, 10);
-                tartness += parseInt(section.dataset.tartness, 10);
+                sourness += parseInt(section.dataset.sourness, 10);
                 bitterness += parseInt(section.dataset.bitterness, 10);
             }
         });
 
         updateScale(sweetnessFill, sweetness);
-        updateScale(tartnessFill, tartness);
+        updateScale(sournessFill, sourness);
         updateScale(bitternessFill, bitterness);
     }
 

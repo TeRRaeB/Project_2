@@ -4,7 +4,7 @@ const ingredients = [
         "name": "Ice",
         "color": "rgb(230, 230, 230)",
         "sweetness": 0,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -12,7 +12,7 @@ const ingredients = [
         "name": "Mint",
         "color": "rgb(144, 238, 144)",
         "sweetness": 2,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 1
     },
     {
@@ -20,7 +20,7 @@ const ingredients = [
         "name": "Sugar",
         "color": "rgb(255, 255, 204)",
         "sweetness": 6,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -28,7 +28,7 @@ const ingredients = [
         "name": "Vodka",
         "color": "rgb(255, 255, 255)",
         "sweetness": 0,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -36,7 +36,7 @@ const ingredients = [
         "name": "White Rum",
         "color": "rgb(235, 235, 235)",
         "sweetness": 5,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 2
     },
     {
@@ -44,7 +44,7 @@ const ingredients = [
         "name": "Gin",
         "color": "rgb(219, 224, 236)",
         "sweetness": 0,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 3
     },
     {
@@ -52,7 +52,7 @@ const ingredients = [
         "name": "Tequila",
         "color": "rgb(255, 204, 153)",
         "sweetness": 2,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 2
     },
     {
@@ -60,7 +60,7 @@ const ingredients = [
         "name": "Lime Juice",
         "color": "rgb(194, 255, 194)",
         "sweetness": 1,
-        "tartness": 9,
+        "sourness": 9,
         "bitterness": 1
     },
     {
@@ -68,7 +68,7 @@ const ingredients = [
         "name": "Lemon Juice",
         "color": "rgb(255, 255, 153)",
         "sweetness": 1,
-        "tartness": 9,
+        "sourness": 9,
         "bitterness": 1
     },
     {
@@ -76,7 +76,7 @@ const ingredients = [
         "name": "Orange Juice",
         "color": "rgb(255, 153, 51)",
         "sweetness": 8,
-        "tartness": 2,
+        "sourness": 2,
         "bitterness": 1
     },
     {
@@ -84,7 +84,7 @@ const ingredients = [
         "name": "Cranberry Juice",
         "color": "rgb(220, 20, 60)",
         "sweetness": 6,
-        "tartness": 3,
+        "sourness": 3,
         "bitterness": 0
     },
     {
@@ -92,7 +92,7 @@ const ingredients = [
         "name": "Pineapple Juice",
         "color": "rgb(255, 204, 0)",
         "sweetness": 7,
-        "tartness": 2,
+        "sourness": 2,
         "bitterness": 1
     },
     {
@@ -100,7 +100,7 @@ const ingredients = [
         "name": "Coconut Cream",
         "color": "rgb(245, 245, 220)",
         "sweetness": 8,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 1
     },
     {
@@ -108,7 +108,7 @@ const ingredients = [
         "name": "Cointreau",
         "color": "rgb(255, 219, 88)",
         "sweetness": 8,
-        "tartness": 4,
+        "sourness": 4,
         "bitterness": 1
     },
     {
@@ -116,7 +116,7 @@ const ingredients = [
         "name": "Kahlúa",
         "color": "rgb(71, 38, 0)",
         "sweetness": 6,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 3
     },
     {
@@ -124,7 +124,7 @@ const ingredients = [
         "name": "Simple Syrup",
         "color": "rgb(255, 255, 204)",
         "sweetness": 7,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -132,7 +132,7 @@ const ingredients = [
         "name": "Grenadine",
         "color": "rgb(255, 102, 102)",
         "sweetness": 9,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 0
     },
     {
@@ -140,7 +140,7 @@ const ingredients = [
         "name": "Triple Sec",
         "color": "rgb(255, 204, 102)",
         "sweetness": 7,
-        "tartness": 2,
+        "sourness": 2,
         "bitterness": 1
     },
     {
@@ -148,7 +148,7 @@ const ingredients = [
         "name": "Bitters",
         "color": "rgb(153, 0, 0)",
         "sweetness": 0,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 9
     },
     {
@@ -156,7 +156,7 @@ const ingredients = [
         "name": "Salt",
         "color": "rgb(245, 245, 245)",
         "sweetness": 0,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -164,7 +164,7 @@ const ingredients = [
         "name": "Club Soda",
         "color": "rgb(230, 230, 250)",
         "sweetness": 0,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -172,7 +172,7 @@ const ingredients = [
         "name": "Ginger Beer",
         "color": "rgb(255, 204, 153)",
         "sweetness": 5,
-        "tartness": 2,
+        "sourness": 2,
         "bitterness": 0
     },
     {
@@ -180,7 +180,7 @@ const ingredients = [
         "name": "Cola",
         "color": "rgb(70, 35, 35)",
         "sweetness": 8,
-        "tartness": 3,
+        "sourness": 3,
         "bitterness": 2
     },
     {
@@ -188,7 +188,7 @@ const ingredients = [
         "name": "Lemonade",
         "color": "rgb(255, 255, 153)",
         "sweetness": 9,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 0
     },
     {
@@ -196,7 +196,7 @@ const ingredients = [
         "name": "Coconut Milk",
         "color": "rgb(218, 165, 32)",
         "sweetness": 5,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -204,7 +204,7 @@ const ingredients = [
         "name": "Cream",
         "color": "rgb(255, 255, 255)",
         "sweetness": 4,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -212,7 +212,7 @@ const ingredients = [
         "name": "Egg White",
         "color": "rgb(255, 255, 255)",
         "sweetness": 0,
-        "tartness": 0,
+        "sourness": 0,
         "bitterness": 0
     },
     {
@@ -220,7 +220,7 @@ const ingredients = [
         "name": "Mango Juice",
         "color": "rgb(255, 204, 102)",
         "sweetness": 8,
-        "tartness": 1,
+        "sourness": 1,
         "bitterness": 1
     }
 ];
