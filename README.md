@@ -10,7 +10,7 @@ This web App project was created to show people the cocktail culture and show th
 ![GitHub last commit](https://img.shields.io/github/last-commit/TeRRaeB/Project_2?color=red)
 ![GitHub contributors](https://img.shields.io/github/contributors/TeRRaeB/Project_2?color=orange)
 ![GitHub language count](https://img.shields.io/github/languages/count/TeRRaeB/Project_2?color=yellow)
-![GitHub top language](https://img.shields.io/github/languages/count/TeRRaeB/Project_2?color=green) 
+![GitHub top language](https://img.shields.io/github/languages/top/TeRRaeB/Project_2?color=green) 
 
 ## CONTENTS
 
