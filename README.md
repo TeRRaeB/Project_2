@@ -24,6 +24,7 @@ This web App project was created to show people the cocktail culture and show th
   * [Imagery](#Imagery)
   * [Wireframe](#Wireframe)
   * [Features](#Features)
+  * [Future Features](#Future-Features)
   * [Accessibility](#Accessibility)
 
 * [Technologies Used](#Technologies-Used)
@@ -39,7 +40,6 @@ This web App project was created to show people the cocktail culture and show th
 * [Testing](#Testing)
   * [W3C Validator](#W3C-Validator)
   * [Known Bugs](#Known-Bugs)
-  * [Future Features](#Future-Features)
     * [Testing User Stories](#Testing-User-Stories) 
     * [Index Page](#Index-Page) 
     * [Contact Us Page](#Contact-Us-Page) 
@@ -111,15 +111,31 @@ The web application consists of one page, but it is divided into 3 main sections
   * Cocktail recipes, if you collect them the user will receive a “Congratulations” pop-up.
 
 * In the center is the "Blender" section
-  * Brander with "MIX" and "Clear" buttons. When you press the "MIX" button, the user will receive the result of mixing the colors of the ingredients. When you press the "Clear" button, the Blender will be cleared of the added ingredients.
+  * Blender diagram with "MIX" and "Clear" buttons. When you press the "MIX" button, the user will receive the result of mixing the colors of the ingredients. When you press the "Clear" button, the Blender will be cleared of the added ingredients.
   * Also, the added ingredient in Blender has a button under the name of the ingredient “Delete”, it makes it possible to delete one specific ingredient.
-  * Under Blender there is a “Taste” section, it shows the three main taste properties obtained by adding ingredients to the Blender. Sweetness, Sourness and Bitterness
+  * Under Blender there is a “Taste” section, it shows the three main taste properties obtained by adding ingredients to the Blender. Sweetness, Sourness and Bitterness. Each of them has a filling scale, which is calculated when adding/removing various ingredients to the blender. This allows the user to predict the resulting taste when mixing.
+
+<details>
+<summary>Taste section</summary>
+
+[![Taste section][7]][7]
+ 
+[7]: ./docs/taste_section.png
+
+</details> 
+
 
 * On the right is the "Ingredients" section
   * All ingredients are taken from a separate JS file. 
   * Each ingredient has its own properties: Name, color, taste (sweetness, sourness, bitterness)
   * All buttons with an ingredient are filled with the color of the ingredient itself.
   * When you click on an ingredient, it will be added to the central section of the Blender. And part of the Blender will be colored in the color of the ingredient.
+
+
+### Future features
+* I would like to add an “Add ingredient” button, this will allow the user to add various ingredients themselves, and choose their color and taste there.
+* You can also add a “Add recipe” button in the left section, and the user will add his favorite cocktails.
+* I would like to move away from using objects (ingredients.js and recipes.js) as a database, and move everything into a real database for ease of interaction. (although I didn't have any problems with it).
 
 
 ### Accessibility
@@ -239,18 +255,30 @@ The W3C validator was used to validate the HTML on all pages of the website. It 
 
 ### Known bugs
 
-* Contrast in the names of ingredients.
+* Contrast in the names of ingredients (decided).
   * In the future, you can add a function that will determine by RGB (dark or light color of the ingredient) and thereby add a note to the font style whether it is necessary to change from the standard color (black) to white.
+<details>
+<summary>Contrast bugs</summary>
+ 
+[![Contrast][6]][6]
+ 
+[6]: ./docs/contrast_bug.png
 
-### Future features
-* I would like to add an “Add ingredient” button, this will allow the user to add various ingredients themselves, and choose their color and taste there.
-* You can also add a “Add recipe” button in the left section, and the user will add his favorite cocktails.
+ * The function takes the color of the ingredient as input (before displaying it to the user) as a string (Example: "rgb(1, 22,333"). The string is parsed using a regular expression and we get three variables. And then we check them. The function's response is boolean (true\false) - Leave the ingredient name color black or not.
+</details>  
+
 
 ### Full Testing
 
 To fully test my website I performed the following testing using a number of browsers (google chrome).
 
 I also went through each page using google chrome developer tools to ensure that they responsive on all different screen sizes.
+
+ * Testing was carried out manually.
+  * Ingredients are displayed using the JS function "displayIngredients()". Additionally, the checkColorTextIngrid() function has been added, which checks the color of the ingredient; if it is dark, then the text with the name of the ingredient will be white. So that there is contrast. The function completes successfully.
+  * Adding an ingredient to the Blender diagram. When you click on the button with an ingredient, the function searches for free space in the “Blender” sections and adds there: color, name and “delete” button, and in addition to adding it to “Blender”, also taste. properties are calculated. The functionality works as intended. When all 5 sections of the Blender are full, no ingredients are added. The “Delete” button works correctly; If, when the Blender is full, you remove an ingredient in the middle, then when added, the nearest empty section will be filled from bottom to top.
+  * The "MIX" button sums all RGB parameters (separately R, G and B) and displays the arithmetic average to obtain the color when mixed, after which all areas are painted in the resulting color.
+  * The Clear button frees up all Blender partitions as intended. This will allow you to add new ingredients.
 
 ### Content
 

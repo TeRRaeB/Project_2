@@ -11,11 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupTitle = document.getElementById('popup-title');
     const popupDescript = document.getElementById('popup-descript');
     const closePopupButton = document.getElementById('close-popup');
+    const recipesText = document.getElementById('recipes');
+    recipesText.innerText = '';
+
+    /**
+     * Alphabetically sort ingredients before display
+     */
 
     ingredients.sort((a, b) => a.name.localeCompare(b.name));
 
-    const recipesText = document.getElementById('recipes');
-    recipesText.innerText = '';
     displayIngredients(ingredients);
     displayRecipes();
 
@@ -40,28 +44,31 @@ document.addEventListener('DOMContentLoaded', () => {
     mixButton.addEventListener('click', mixIngredients);
     clearButton.addEventListener('click', clearBlender);
 
-    function displayRecipes() {
+    /**
+     *  Function to display recipes.
+     */
 
+    function displayRecipes() {
         recipes.forEach(recipe => {
             const recipeDiv = document.createElement('div');
             const recipeName = document.createElement('h3');
             const recipeIngridientList = document.createElement('ul');
-
             recipeName.innerText = recipe.name;
-
             recipe.ingredients.forEach(ingredientId => {
                 const ingredient = ingredients.find(ing => ing.id === ingredientId);
                 const ingredientItem = document.createElement('li');
                 ingredientItem.innerText = ingredient ? ingredient.name : 'Unknown ingredient';
                 recipeIngridientList.appendChild(ingredientItem);
             });
-
             recipeDiv.appendChild(recipeName);
             recipeDiv.appendChild(recipeIngridientList);
             recipesText.appendChild(recipeDiv);
         });
     }
 
+    /**
+     *  Function to display ingredients.
+     */
 
     function displayIngredients(ingredients) {
         ingredientsList.innerHTML = '';
@@ -74,11 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredientButton.dataset.sourness = ingredient.sourness;
             ingredientButton.dataset.bitterness = ingredient.bitterness;
             ingredientButton.innerText = ingredient.name;
+            checkColorTextIngrid(ingredient.color) ? ingredientButton.style.color = 'rgb(0,0,0)' : ingredientButton.style.color = 'rgb(255,255,255)';
             ingredientButton.style.backgroundColor = ingredient.color;
             ingredientButton.addEventListener('click', () => addIngredient(ingredientButton));
             ingredientsList.appendChild(ingredientButton);
         });
     }
+
+    /**
+     *  Function to checking the color of the ingredient before display (black or white text color).
+     */
+
+    function checkColorTextIngrid(color) {
+        let r = 0, g = 0, b = 0;
+        const [red, green, blue] = color.match(/\d+/g).map(Number);
+        r += red;
+        g += green;
+        b += blue;
+
+        if (r < 160) {
+            if (g < 160) {
+                if (b < 160)
+                    return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    /**
+     * Function to add an ingredient to a "Blender".
+     */
 
     function addIngredient(ingredient) {
         const emptySection = [...blenderSections].find(section => !section.dataset.id);
@@ -98,6 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /**
+     *  Function for removing one ingredient in a blender.
+     */
+
     function removeIngredient(section) {
         section.innerHTML = '';
         section.style.backgroundColor = '';
@@ -107,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
         delete section.dataset.bitterness;
         updateFlavors();
     }
+
+    /**
+     * Function of mixing added ingredients.
+     */
 
     function mixIngredients() {
         const currentIngredients = Array.from(blenderSections)
@@ -136,6 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    /**
+    *  Function for removing all ingredient in a blender.
+    */
+
     function clearBlender() {
         blenderSections.forEach(section => {
             section.innerHTML = '';
@@ -147,6 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         updateFlavors();
     }
+
+    /**
+    *  Recalculation of taste properties
+    */
 
     function updateFlavors() {
         let sweetness = 0;
@@ -166,10 +215,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateScale(bitternessFill, bitterness);
     }
 
+    /**
+     * Recalculation of the flavor property line
+     */
+
     function updateScale(fillElement, value) {
         const percentage = Math.min(value / 30 * 100, 100);
         fillElement.style.width = `${percentage}%`;
     }
+
+    /**
+     *  Mixing colors.
+     */
 
     function colorMix(colors) {
         let r = 0, g = 0, b = 0;
