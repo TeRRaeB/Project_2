@@ -279,7 +279,8 @@ I also went through each page using google chrome developer tools to ensure that
   * Adding an ingredient to the Blender diagram. When you click on the button with an ingredient, the function searches for free space in the “Blender” sections and adds there: color, name and “delete” button, and in addition to adding it to “Blender”, also taste. properties are calculated. The functionality works as intended. When all 5 sections of the Blender are full, no ingredients are added. The “Delete” button works correctly; If, when the Blender is full, you remove an ingredient in the middle, then when added, the nearest empty section will be filled from bottom to top.
   * The "MIX" button sums all RGB parameters (separately R, G and B) and displays the arithmetic average to obtain the color when mixed, after which all areas are painted in the resulting color.
   * The Clear button frees up all Blender partitions as intended. This will allow you to add new ingredients.
-
+  * If you add a recipe ingredient to Blender (there are cocktail recipes on the left side of the application), no matter in what order, a pop-up notification and congratulations text will appear after you press the BLEND button. (and it will be the color of a cocktail). And by pressing the “try again” button, the “Blender” is cleared of ingredients.
+  
 ### Content
 
 * Website content was taken primarily from Wikipedia.com
