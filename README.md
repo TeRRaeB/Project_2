@@ -156,7 +156,7 @@ HTML,CSS and JS were used to create this website.
 
 ### Frameworks, Libraries & Programs Used
 
-ChatGPT - used, after receiving the result was rebuilt and adapted code.
+ChatGPT (v3.5) - used, after receiving the result was rebuilt and adapted code.
 
 Git - For version control.
 

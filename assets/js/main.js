@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Alphabetically sort ingredients before display
      */
-
     ingredients.sort((a, b) => a.name.localeCompare(b.name));
 
     displayIngredients(ingredients);
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      *  Function to display recipes.
      */
-
     function displayRecipes() {
         recipes.forEach(recipe => {
             const recipeDiv = document.createElement('div');
@@ -69,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      *  Function to display ingredients.
      */
-
     function displayIngredients(ingredients) {
         ingredientsList.innerHTML = '';
         ingredients.forEach(ingredient => {
@@ -91,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      *  Function to checking the color of the ingredient before display (black or white text color).
      */
-
     function checkColorTextIngrid(color) {
         let r = 0, g = 0, b = 0;
         const [red, green, blue] = color.match(/\d+/g).map(Number);
@@ -112,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Function to add an ingredient to a "Blender".
      */
-
     function addIngredient(ingredient) {
         const emptySection = [...blenderSections].find(section => !section.dataset.id);
         if (emptySection) {
@@ -134,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      *  Function for removing one ingredient in a blender.
      */
-
     function removeIngredient(section) {
         section.innerHTML = '';
         section.style.backgroundColor = '';
@@ -146,9 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * Some of the code for this function was created using ChatGPT (v3.5) and adapted by me.
      * Function of mixing added ingredients.
      */
-
     function mixIngredients() {
         const currentIngredients = Array.from(blenderSections)
             .filter(section => section.dataset.id)
@@ -180,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
     *  Function for removing all ingredient in a blender.
     */
-
     function clearBlender() {
         blenderSections.forEach(section => {
             section.innerHTML = '';
@@ -196,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
     *  Recalculation of taste properties
     */
-
     function updateFlavors() {
         let sweetness = 0;
         let sourness = 0;
@@ -218,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Recalculation of the flavor property line
      */
-
     function updateScale(fillElement, value) {
         const percentage = Math.min(value / 30 * 100, 100);
         fillElement.style.width = `${percentage}%`;
@@ -227,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      *  Mixing colors.
      */
-
     function colorMix(colors) {
         let r = 0, g = 0, b = 0;
         colors.forEach(color => {
